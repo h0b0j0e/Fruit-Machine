@@ -58,7 +58,7 @@ void draw(char a, char b, char c, int y) {
 	cout << '\r' <<"   "<< a <<"   "<< b <<"   "<< c;
 
 	SetConsoleCursorPosition(hconsole, { 0,6 });
-	cout << "Enter S to spin, Enter X to stop spinning" ;
+	cout << "Press X to stop spinning" ;
 }
 
 void valueStorage() {
@@ -77,217 +77,57 @@ void valueStorage() {
 
 
 void rotate() {
-	if (stopCounter == 0) {
-		cout << stopCounter;
-		Sleep(500);
-		valueStorage();
-
+	valueStorage();
+	for (int l = 0; l < 3; l++) {
+		Sleep(250);
 		for (int j = 0; j < 3; j++) {
 			if (j == 0) {
-				cout << "\n" << values[0][0] << values[1][0] << values[2][0] << j;
 				draw(values[0][0], values[1][0], values[2][0], j);
-				Sleep(500);
 			}
 			if (j == 1) {
-				cout << "\n\n" << values[0][1] << values[1][1] << values[2][1] << j;
 				draw(values[0][1], values[1][1], values[2][1], j);
-				Sleep(500);
 			}
 			if (j == 2) {
-				cout << "\n\n\n" << values[0][2] << values[1][2] << values[2][2] << j;
 				draw(values[0][2], values[1][2], values[2][2], j);
-				Sleep(500);
 			}
 		}
-			/*
-			ROTATION STEP ONE:
+
+		//FULL ROTATION:
+		if (stopCounter == 0) {
+			//column 1
 			values[0][0] = storage[0][2];
 			values[0][1] = storage[0][0];
 			values[0][2] = storage[0][1];
-
-			ROTATION STEP TWO
-			values[0][0] = storage[0][1];
-			values[0][1] = storage[0][2];
-			values[0][2] = storage[0][0];
-
-			ROTATION STEP THREE:
-			values[0][0] = storage[0][0];
-			values[0][1] = storage[0][1];
-			values[0][2] = storage[0][2];
-			*/
-	}
-}
-/*
-	//draw 3x3 grid of values
-	for (int j = 0; j < 3; j++) {
-		if (j == 0) {
-			draw(values[0][0], values[1][0], values[2][0], j);
+			//column 2
+			values[1][0] = storage[1][2];
+			values[1][1] = storage[1][0];
+			values[1][2] = storage[1][1];
+			//column 3
+			values[2][0] = storage[2][2];
+			values[2][1] = storage[2][0];
+			values[2][2] = storage[2][1];
 		}
-		if (j == 1) {
-			draw(values[0][1], values[1][1], values[2][1], j);
+
+		//SECOND AND THIRD COLUMN ROTATION:
+		if (stopCounter == 1) {
+			//column 2
+			values[1][0] = storage[1][2];
+			values[1][1] = storage[1][0];
+			values[1][2] = storage[1][1];
+			//column 3
+			values[2][0] = storage[2][2];
+			values[2][1] = storage[2][0];
+			values[2][2] = storage[2][1];
 		}
-		if (j == 2) {
-			draw(values[0][2], values[1][2], values[2][2], j);
-		}
-	}
-	//move each row down by 1 digit, giving the illusion of rotation
-	Sleep(500);
-}
-*/
-
-/*
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][0], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][1], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][2], j);
-			}
-
-
-
-
-
-
-
-
-
-
-
-
-		}
-		//move each row down again
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][1], values[1][1], values[2][1], j);
-			}
-			if (j == 1) {
-				draw(values[0][2], values[1][2], values[2][2], j);
-			}
-			if (j == 2) {
-				draw(values[0][0], values[1][0], values[2][0], j);
-			}
-		}
-	}
-	if (stopCounter == 1) {
-		//draw 3x3 grid of values
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][0], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][1], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][2], j);
-			}
-		}
-		//move each row down by 1 digit, giving the illusion of rotation
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][2], values[2][2], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][0], values[2][0], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][1], values[2][1], j);
-			}
-		}
-		//move each row down again
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][1], values[2][1], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][2], values[2][2], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][0], values[2][0], j);
-			}
-		}
-	}
-	if (stopCounter == 2){
-		//draw 3x3 grid of values
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][0], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][1], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][2], j);
-			}
-		}
-		//move each row down by 1 digit, giving the illusion of rotation
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][2], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][0], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][1], j);
-			}
-		}
-		//move each row down again
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][1], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][2], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][0], j);
-			}
-		}
-	}
-	if (stopCounter == 3) {
-		//draw 3x3 grid of values
-		Sleep(500);
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				draw(values[0][0], values[1][0], values[2][0], j);
-			}
-			if (j == 1) {
-				draw(values[0][1], values[1][1], values[2][1], j);
-			}
-			if (j == 2) {
-				draw(values[0][2], values[1][2], values[2][2], j);
-			}
+		//EXCLUSIVLEY THIRD COLUMN ROTATION:
+		if (stopCounter == 2) {
+			//column 3
+			values[2][0] = storage[2][2];
+			values[2][1] = storage[2][0];
+			values[2][2] = storage[2][1];
 		}
 	}
 }
-
-char savePositions(char a, char b, char c, char d, char e, char f, char g, char h, char i, int stopCounter) {
-	
-	if (stopCounter == 1){
-
-		stop[0][0] = a;
-		stop[1][0] = d;
-		stop[2][0] = g;
-	}
-
-		stop[0][1] = b;
-		stop[1][1] = e;
-		stop[2][1] = h;
-	
-	return a, b, c, d, e, f, g, h, i;
-}
-*/
 
 
 int main() {
@@ -295,7 +135,7 @@ int main() {
 	init_Graphics();
 
 	int y;
-	bool game_running = true;
+	bool game_running = false;
 
 	values[0][0] = 'a'; //a
 	values[1][0] = 'a'; //b
@@ -307,6 +147,16 @@ int main() {
 	values[1][2] = 'c'; //h
 	values[2][2] = 'c'; //i
 
+	cout << "<------------------------->" << endl;
+	cout << "        F R U I T    " << endl;
+	cout << "      M A C H I N E!  " << endl;
+	cout << "<------------------------->\n" << endl;
+	cout << " PRESS ANY BUTTON TO START." << endl;
+
+	if (_getch()) {
+		game_running = true;
+		system("cls");
+	}
 
 	while (game_running == true) {
 		rotate();
@@ -315,24 +165,12 @@ int main() {
 			//getch pauses console until a character is entered,
 			//toupper then changes the character to its upper case equivalent.
 			input = toupper(_getch());
-
-			//If the user inputs S, the rotate function runs (until the user inputs X, which will cause it to move to the next while loop.)
-			if (input == 'S'){
-				cout << "\n" << input;
-			}
-			//When the user inputs X, the counter that tracks the number of stops increases by 1 and the stopRotate function runs.
-			//after stopRotate completes, input is then set to S to run the rotate function, beginning rotation once more.
-			while (input == 'X'){
-				cout << "\n" << input;
+			//When the user inputs X, the counter that tracks the number of stops increases by 1.
+			if (input == 'X'){
 				stopCounter += 1;
-				input = 'S';
-				/*
-				savePositions(values[0][0], values[1][0], values[2][0], values[0][1], values[1][1], values[2][1], values[0][2], values[1][2], values[2][2], stopCounter);
-				*/
 			} 
 		}
 	}
-
 	return 0;
 }
 
