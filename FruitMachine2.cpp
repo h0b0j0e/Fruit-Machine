@@ -63,50 +63,58 @@ void draw(char a, char b, char c, int y) {
 
 void valueStorage() {
 
-	if (stopCounter == 1) {
 		storage[0][0] = values[0][0];
 		storage[0][1] = values[0][1];
 		storage[0][2] = values[0][2];
-	}
+		storage[1][0] = values[1][0];
+		storage[1][1] = values[1][1];
+		storage[1][2] = values[1][2];
+		storage[2][0] = values[2][0];
+		storage[2][1] = values[2][1];
+		storage[2][2] = values[2][2];
+
 }
 
 
 void rotate() {
 	if (stopCounter == 0) {
+		cout << stopCounter;
 		Sleep(500);
-		//ROTATE COLUMN 1:
-		//store values
 		valueStorage();
-		//move values down one
-		for (int j = 0; j < 3; j++) {
-			valueStorage();
-			if (j == 0) {
-				values[0][0] = storage[0][2];
-				values[0][1] = storage[0][0];
-				values[0][2] = storage[0][1];
 
+		for (int j = 0; j < 3; j++) {
+			if (j == 0) {
+				cout << "\n" << values[0][0] << values[1][0] << values[2][0] << j;
 				draw(values[0][0], values[1][0], values[2][0], j);
+				Sleep(500);
+			}
+			if (j == 1) {
+				cout << "\n\n" << values[0][1] << values[1][1] << values[2][1] << j;
 				draw(values[0][1], values[1][1], values[2][1], j);
+				Sleep(500);
+			}
+			if (j == 2) {
+				cout << "\n\n\n" << values[0][2] << values[1][2] << values[2][2] << j;
 				draw(values[0][2], values[1][2], values[2][2], j);
 				Sleep(500);
 			}
-			if (j == 1) {
-				values[0][0] = storage[0][1];
-				values[0][1] = storage[0][2];
-				values[0][2] = storage[0][0];
-
-				draw(values[0][0], values[0][1], values[0][2], j);
-				Sleep(500);
-			}
-			if (j == 1) {
-				values[0][0] = storage[0][0];
-				values[0][1] = storage[0][1];
-				values[0][2] = storage[0][2];
-
-				draw(values[0][0], values[0][1], values[0][2], j);
-				Sleep(500);
-			}
 		}
+			/*
+			ROTATION STEP ONE:
+			values[0][0] = storage[0][2];
+			values[0][1] = storage[0][0];
+			values[0][2] = storage[0][1];
+
+			ROTATION STEP TWO
+			values[0][0] = storage[0][1];
+			values[0][1] = storage[0][2];
+			values[0][2] = storage[0][0];
+
+			ROTATION STEP THREE:
+			values[0][0] = storage[0][0];
+			values[0][1] = storage[0][1];
+			values[0][2] = storage[0][2];
+			*/
 	}
 }
 /*
@@ -287,7 +295,6 @@ int main() {
 	init_Graphics();
 
 	int y;
-	char* stop[3][3];
 	bool game_running = true;
 
 	values[0][0] = 'a'; //a
@@ -300,11 +307,6 @@ int main() {
 	values[1][2] = 'c'; //h
 	values[2][2] = 'c'; //i
 
-	/*
-	draw(values[0][0], values[1][0], values[2][0], 0);
-	draw(values[0][1], values[1][1], values[2][1], 1);
-	draw(values[0][2], values[1][2], values[2][2], 2);
-	*/
 
 	while (game_running == true) {
 		rotate();
